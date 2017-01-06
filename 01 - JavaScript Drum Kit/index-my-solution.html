@@ -57,13 +57,33 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script type="text/javascript">
-        document.body.addEventListener('click', function playSound(event) {
-          var div = 0;
-          var audio = 0;
-          //alert(event);
-          console.log(event.target);
-        });
+<script>
+  window.addEventListener('keydown', (e) => {
+    // to check keycode try http://keycode.info/
+    //console.log(e.keyCode);
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    //const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    // alternative class selctor to the above
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    //console.log(audio);
+    //console.log(key);
+    if (!audio) return; // stop the function from running all together
+    audio.currentTime = 0; // rewind to start
+    audio.play();
+    key.classList.add('playing');
+  });
+
+  function removeTrasition(e) {
+    //console.log(e);
+    if (e.propertyName != 'transform') return; // skip it if it's not trasfrom
+    //console.log(this); //this is alwyas what was the function called against
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  //console.log(keys);
+  keys.forEach(key => key.addEventListener('transitionend', removeTrasition));
+
 </script>
 
 
