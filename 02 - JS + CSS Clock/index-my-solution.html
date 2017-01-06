@@ -74,6 +74,13 @@
     const minutesHand = document.querySelector('.min-hand');
     const hoursHand = document.querySelector('.hour-hand');
 
+    secondHand.style.background = 'red';
+    minutesHand.style.background = 'white';
+    minutesHand.style.height = '8px';
+    hoursHand.style.height = '10px';
+  //  minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+ //   minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
     function setDate() {
       //console.log('Hi');
       const now = new Date();
